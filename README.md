@@ -48,9 +48,7 @@ LEAD_website/
   │   ├── index.html
   │   ├── navbar.html
   │   ├── sponsors.html
-  │   ├── style.css
   │   ├── team.html
-  │   ├── script.js
   │   └── sponsors.js
   └── README.md
 ```
