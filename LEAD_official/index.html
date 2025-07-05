@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HOMEPAGE</title>
-  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
 
@@ -84,86 +84,105 @@
     </nav>
   </header>
 
-  <script>
-    const toggleButton = document.getElementById('themeToggle');
-    const iconSpan = document.getElementById('themeIcon');
-    const toggleButtonMobile = document.getElementById('themeToggleMobile');
-    const iconSpanMobile = document.getElementById('themeIconMobile');
-    const logoImg = document.getElementById('logo');
-    const centrelogo = document.getElementById('centrelogo');
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <img id="heroLogo" class="hero-lead" src="Images/LEAD_black.png" alt="LEAD Logo" style="max-width: 350px; width: 100%; height: auto; display: block; margin-left: 0;" />
+    <h2 class="hero-tagline">
+      <span class="tagline-left">LEARN | EMERGE |</span>
+      <span class="tagline-right">ASPIRE | DISCOVER</span>
+    </h2>
+    <p class="hero-subtitle">A society where you explore the world</p>
+  </section>
 
-    const sunIcon = `
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24"
-           viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21
-                   m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12
-                   a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
-      </svg>`;
+ <!--About Us Section -->
+   <section class="about-us" id="about">
+    <div class="about-image">
+      <img src="Images/thapar-university.jpg" alt="About Us Image" />
+    </div>
+    <div class="about-content">           
+      <h1>About Us</h1>
+      <p>
+        Welcome to our society! We are dedicated to helping you learn, emerge, aspire, and discover. Our mission is to provide a platform where you can explore the world, connect with like-minded individuals, and grow both personally and professionally. Join us on this exciting journey!
+      </p>
+      <p>
+        Our team is passionate about creating opportunities for growth, hosting engaging events, and building a supportive community. Whether you're looking to expand your knowledge, network with peers, or simply have fun, we have something for everyone.
+      </p>
+      <p>
+        Thank you for being a part of our story. Together, let's achieve greatness!
+      </p>
+    </div> 
+  </section>
 
-    const moonIcon = `
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24"
-           viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M21 12.79A9 9 0 0 1 11.21 3a7.5 7.5 0 1 0 9.79 9.79Z" />
-      </svg>`;
+  <h1 class="contact-heading" style="text-align:center; margin: 40px 0 -50px 0; font-size:3.5rem; font-family:'Georgia','Times New Roman',serif; font-weight:700; letter-spacing:1px;">Contact Us</h1>
 
-    function setThemeIcons(isLight) {
-      if (iconSpan) iconSpan.innerHTML = isLight ? moonIcon : sunIcon;
-      if (iconSpanMobile) iconSpanMobile.innerHTML = isLight ? moonIcon : sunIcon;
-    }
+  <!-- Contact Section with Animated Circles -->
+<section class="contact-wrapper" id="contact">
+  <!-- Blurred Circles Behind -->
+  <div class="blur-circle circle1"></div>
+  <div class="blur-circle circle2"></div>
+  <div class="blur-circle circle3"></div>
+  <div class="blur-circle circle4"></div>
+  <div class="blur-circle circle5"></div>
 
-    function applyTheme(isLight) {
-      if (isLight) {
-        document.body.classList.add('light-theme');
-        logoImg.src = 'Images/LEAD_black.png';
-      } else {
-        document.body.classList.remove('light-theme');
-        logoImg.src = 'Images/Leadlogo.png';
-      }
-      setThemeIcons(isLight);
-    }
+  <!-- Contact Card -->
+  <div class="contact-card">
+    <div class="contact-info">
+      <h2>Contact Information</h2>
+      <div class="info-item"><span class="icon">📧</span> whateverletis@thapar.edu</div>
+      <div class="info-item"><span class="icon">📍</span> Thapar Institute, Patiala, India</div>
+      <div class="socials">
+        <a href="#" aria-label="Twitter">🐦</a>
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="LinkedIn">💼</a>
+      </div>
+    </div>
 
-    function toggleTheme() {
-      const isLight = !document.body.classList.contains('light-theme');
-      applyTheme(isLight);
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    }
+    <form class="contact-form" autocomplete="off">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" required>
+        </div>
+      </div>
 
-    if (toggleButton) toggleButton.addEventListener('click', toggleTheme);
-    if (toggleButtonMobile) toggleButtonMobile.addEventListener('click', toggleTheme);
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" required>
+        </div>
+      </div>
 
-   
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      applyTheme(true);
-    } else {
-      applyTheme(false);
-    }
+      <div class="form-row">
+        <label class="subject-label">Select Subject?</label>
+        <div class="subject-options">
+          <label><input type="radio" name="subject" value="General Inquiry"> General Inquiry</label>
+          <label><input type="radio" name="subject" value="Brand Identity"> Brand Identity</label>
+          <label><input type="radio" name="subject" value="UI/UX"> UI/UX</label>
+          <label><input type="radio" name="subject" value="Packaging Design"> Packaging Design</label>
+        </div>
+      </div>
 
-    
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('nav-active');
-      hamburger.classList.toggle('hamburger-active');
-    });
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label for="message">Message</label>
+          <textarea id="message" rows="4" placeholder="Write your message..."></textarea>
+        </div>
+      </div>
 
-  
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('nav-active');
-        hamburger.classList.remove('hamburger-active');
-      });
-    });
-
-    
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-        navLinks.classList.remove('nav-active');
-        hamburger.classList.remove('hamburger-active');
-      }
-    });
-  </script>
+      <div class="form-row end">
+        <button type="submit" class="send-btn">Send Message</button>
+      </div>
+    </form>
+  </div>
+</section>
+<script src="main.js"></script>
 </body>
 </html>

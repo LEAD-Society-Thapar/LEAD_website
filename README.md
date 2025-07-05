@@ -23,14 +23,34 @@ We are a student-run society focused on fostering leadership, organizing impactf
 
 ---
 
-## 📁 File Structure (Example)
+## 📁 File Structure
 
 ```bash
-LEAD_official/
-├── Images/              # All images and logo assets
-├── index.html           # Main landing page
-├── about.html           # About the society
-├── events.html          # Events timeline
-├── team.html            # Team member showcase
-└── styles/              # Custom CSS files
-README.md            # Project README
+LEAD_website/
+  ├── LEAD_official/
+  │   ├── images/
+  │   │   ├── aim-backdrop.svg
+  │   │   ├── gfg.jpg
+  │   │   ├── LEAD_black.png
+  │   │   ├── LEAD_white.png
+  │   │   ├── Leadlogo.png
+  │   │   ├── sun-icon.svg
+  │   │   └── thapar-university.jpg
+  │   ├── styles/
+  │   │   ├── about.css
+  │   │   ├── events.css
+  │   │   ├── main.css
+  │   │   ├── navbar.css
+  │   │   ├── sponsors.css
+  │   │   └── team.css
+  │   ├── about.html
+  │   ├── events.html
+  │   ├── index.html
+  │   ├── navbar.html
+  │   ├── sponsors.html
+  │   ├── style.css
+  │   ├── team.html
+  │   ├── script.js
+  │   └── sponsors.js
+  └── README.md
+```

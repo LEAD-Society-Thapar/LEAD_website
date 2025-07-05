@@ -72,4 +72,3 @@ if (hamburger && navLinks) {
         navLinks.classList.toggle('nav-active');
     });
 }
-
