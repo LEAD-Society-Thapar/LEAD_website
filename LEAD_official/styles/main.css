@@ -119,7 +119,7 @@ body.light-theme .hamburger-line {
 }
 
 .about-us {
-  margin-top: 40vh;
+  margin-top:18vh;
   position: relative;
   z-index: 1;
   padding: 80px 20px;
@@ -131,7 +131,7 @@ body.light-theme .hamburger-line {
 
 .about-image {
   flex: 0 0 300px;
-  margin-top: 10%;
+  margin-top: 2%;
   transform: translateX(-100px);
   opacity: 0;
   transition: transform 1s ease-out, opacity 1s ease-out;
@@ -481,49 +481,50 @@ textarea {
   z-index: 0;
   background-size: 400% 400%;
   animation: animatedGradientColors 10s linear infinite alternate !important;
+  filter: blur(20px) !important;
 }
 
 .contact-wrapper .circle1 {
   width: 150px; height: 150px; left: 210px; top: 50px;
-  background: linear-gradient(135deg, #ff69b4, #00bfff, #7f7fff, #a259ff, #20e3b2, #ff69b4);
+  background: linear-gradient(135deg, #ff69b4, #00bfff, #7f7fff, #a259ff, #ff69b4);
 }
 .contact-wrapper .circle2 {
   width: 260px; height: 260px; right: 60px; top: 50px;
-  background: linear-gradient(225deg, #7f7fff, #00bfff, #a259ff, #ff69b4, #20e3b2, #7f7fff);
+  background: linear-gradient(225deg, #7f7fff, #00bfff, #a259ff, #ff69b4,  #7f7fff);
 }
 .contact-wrapper .circle3 {
   width: 220px; height: 220px; left: 100px; bottom: 10px;
-  background: linear-gradient(90deg, #a259ff, #ff69b4, #00bfff, #7f7fff, #20e3b2, #a259ff);
+  background: linear-gradient(90deg, #a259ff, #ff69b4, #00bfff, #7f7fff,  #a259ff);
 }
 .contact-wrapper .circle4 {
   width: 120px; height: 120px; right: 230px; bottom: 10px;
-  background: linear-gradient(315deg, #ff69b4, #a259ff, #00bfff, #7f7fff, #20e3b2, #ff69b4);
+  background: linear-gradient(315deg, #ff69b4, #a259ff, #00bfff, #7f7fff,  #ff69b4);
 }
 .contact-wrapper .circle5 {
   width: 90px; height: 90px; left: 48%; top: 65%;
-  background: linear-gradient(180deg, #7f7fff, #ff69b4, #00bfff, #a259ff, #20e3b2, #7f7fff);
+  background: linear-gradient(180deg, #7f7fff, #ff69b4, #00bfff, #a259ff,  #7f7fff);
 }
 
 @keyframes animatedGradientColors {
   0% {
     background-position: 0% 50%;
-    filter: hue-rotate(0deg);
+    filter: blur(20px) hue-rotate(0deg);
   }
   25% {
     background-position: 50% 100%;
-    filter: hue-rotate(90deg);
+    filter: blur(20px) hue-rotate(90deg);
   }
   50% {
     background-position: 100% 50%;
-    filter: hue-rotate(180deg);
+    filter: blur(20px) hue-rotate(180deg);
   }
   75% {
     background-position: 50% 0%;
-    filter: hue-rotate(270deg);
+    filter: blur(20px) hue-rotate(270deg);
   }
   100% {
     background-position: 0% 50%;
-    filter: hue-rotate(360deg);
+    filter: blur(20px) hue-rotate(360deg);
   }
 }
 
@@ -735,7 +736,7 @@ textarea {
   color: #fff9f9;
   position: relative;
   z-index: 2;
-  margin-left: 5vw;
+  margin-left: 10vw;
 }
 .hero-lead {
   font-size: 7vw;
