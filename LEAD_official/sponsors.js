@@ -72,3 +72,19 @@ if (hamburger && navLinks) {
         navLinks.classList.toggle('nav-active');
     });
 }
+
+// === Money Rain Effect ===
+const moneyRainContainer = document.getElementById('money-rain');
+const moneySymbols = ['💵', '💸', '🪙'];
+function spawnMoney() {
+  const el = document.createElement('span');
+  el.className = 'money';
+  el.textContent = moneySymbols[Math.floor(Math.random() * moneySymbols.length)];
+  el.style.left = Math.random() * 98 + 'vw';
+  el.style.fontSize = (1.8 + Math.random() * 1.8) + 'rem';
+  el.style.animationDuration = (2.8 + Math.random() * 2.5) + 's';
+  el.style.transform = `rotateZ(${Math.random() * 360}deg)`;
+  moneyRainContainer.appendChild(el);
+  el.addEventListener('animationend', () => el.remove());
+}
+setInterval(spawnMoney, 320);
