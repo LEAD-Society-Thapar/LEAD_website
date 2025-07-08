@@ -84,6 +84,17 @@ function spawnMoney() {
   el.style.fontSize = (1.8 + Math.random() * 1.8) + 'rem';
   el.style.animationDuration = (2.8 + Math.random() * 2.5) + 's';
   el.style.transform = `rotateZ(${Math.random() * 360}deg)`;
+
+  // Calculate the fall distance: total scrollable height + some buffer
+  const docHeight = Math.max(
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight,
+    document.body.clientHeight, document.documentElement.clientHeight
+  );
+  // Start position is -10vh, so add a bit more to ensure it falls past the bottom
+  const fallDistance = docHeight + window.innerHeight * 0.1;
+  el.style.setProperty('--fall-distance', `${fallDistance}px`);
+
   moneyRainContainer.appendChild(el);
   el.addEventListener('animationend', () => el.remove());
 }
