@@ -52,7 +52,7 @@ function toggleTheme() {
   document.body.classList.toggle('light-theme');
   const isLight = document.body.classList.contains('light-theme');
   setThemeIcons(isLight);
-  if (logoImg) logoImg.src = isLight ? 'LEAD_black.png' : 'LEAD_white.png';
+  if (logoImg) logoImg.src = isLight ? 'images/LEAD_black.png' : 'images/Leadlogo.png';
 }
 
 if (toggleButton) toggleButton.addEventListener('click', toggleTheme);
@@ -61,7 +61,7 @@ if (toggleButtonMobile) toggleButtonMobile.addEventListener('click', toggleTheme
 setThemeIcons(document.body.classList.contains('light-theme'));
 
 // Set initial logo based on theme
-if (logoImg) logoImg.src = document.body.classList.contains('light-theme') ? 'LEAD_black.png' : 'LEAD_white.png';
+if (logoImg) logoImg.src = document.body.classList.contains('light-theme') ? 'images/LEAD_black.png' : 'images/Leadlogo.png';
 
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
