@@ -387,25 +387,23 @@ function unflipAllCards() {
 prevBtn.addEventListener('click', () => {
   if (current > -1) {
     current -= 1;
-    updateCarousel();
-    updateHighlight();
-    unflipAllCards();
+  } else {
+    current = maxIndex() - 1; // Go to last card if at first
   }
+  updateCarousel();
+  updateHighlight();
+  unflipAllCards();
 });
 
 nextBtn.addEventListener('click', () => {
   if (current < maxIndex() - 1) {
     current += 1;
-    updateCarousel();
-    updateHighlight();
-    unflipAllCards();
   } else {
-    // If at the last card, go to the first card
-    current = -1;
-    updateCarousel();
-    updateHighlight();
-    unflipAllCards();
+    current = -1; // Go to first card if at last
   }
+  updateCarousel();
+  updateHighlight();
+  unflipAllCards();
 });
 
 let autoSlide = setInterval(autoAdvance, 5000);
