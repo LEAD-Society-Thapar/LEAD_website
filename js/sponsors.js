@@ -1,3 +1,7 @@
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, initializing theme toggle...'); // Debug log
+
 // 3D Tilt Effect for Cards
 const cards = document.querySelectorAll('.card');
 cards.forEach(card => {
@@ -48,20 +52,40 @@ function setThemeIcons(isLight) {
   if (iconSpanMobile) iconSpanMobile.innerHTML = isLight ? moonIcon : sunIcon;
 }
 
-function toggleTheme() {
-  document.body.classList.toggle('light-theme');
-  const isLight = document.body.classList.contains('light-theme');
+function applyTheme(isLight) {
+  if (isLight) {
+    document.body.classList.add('light-theme');
+    logoImg.src = 'Images/LEAD_black.png';
+    const heroLogo = document.getElementById('heroLogo');
+    if (heroLogo) heroLogo.src = 'Images/LEAD_black.png';
+  } else {
+    document.body.classList.remove('light-theme');
+    logoImg.src = 'Images/Leadlogo.png';
+    const heroLogo = document.getElementById('heroLogo');
+    if (heroLogo) heroLogo.src = 'Images/Leadlogo.png';
+  }
   setThemeIcons(isLight);
-  if (logoImg) logoImg.src = isLight ? 'images/LEAD_black.png' : 'images/Leadlogo.png';
+}
+
+function toggleTheme() {
+  const isLight = !document.body.classList.contains('light-theme');
+  applyTheme(isLight);
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
 }
 
 if (toggleButton) toggleButton.addEventListener('click', toggleTheme);
 if (toggleButtonMobile) toggleButtonMobile.addEventListener('click', toggleTheme);
 
-setThemeIcons(document.body.classList.contains('light-theme'));
 
-// Set initial logo based on theme
-if (logoImg) logoImg.src = document.body.classList.contains('light-theme') ? 'images/LEAD_black.png' : 'images/Leadlogo.png';
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  applyTheme(true);
+} else {
+  applyTheme(false);
+}
+
+// Set initial theme icons
+setThemeIcons(document.body.classList.contains('light-theme'));
 
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
@@ -71,31 +95,23 @@ if (hamburger && navLinks) {
         hamburger.classList.toggle('hamburger-active');
         navLinks.classList.toggle('nav-active');
     });
+    
+    // Close menu when clicking on links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('nav-active');
+            hamburger.classList.remove('hamburger-active');
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('nav-active');
+            hamburger.classList.remove('hamburger-active');
+        }
+    });
 }
 
-// === Money Rain Effect ===
-const moneyRainContainer = document.getElementById('money-rain');
-const moneySymbols = ['💵', '💸', '🪙'];
-function spawnMoney() {
-  const el = document.createElement('span');
-  el.className = 'money';
-  el.textContent = moneySymbols[Math.floor(Math.random() * moneySymbols.length)];
-  el.style.left = Math.random() * 98 + 'vw';
-  el.style.fontSize = (1.8 + Math.random() * 1.8) + 'rem';
-  el.style.animationDuration = (2.8 + Math.random() * 2.5) + 's';
-  el.style.transform = `rotateZ(${Math.random() * 360}deg)`;
 
-  // Calculate the fall distance: total scrollable height + some buffer
-  const docHeight = Math.max(
-    document.body.scrollHeight, document.documentElement.scrollHeight,
-    document.body.offsetHeight, document.documentElement.offsetHeight,
-    document.body.clientHeight, document.documentElement.clientHeight
-  );
-  // Start position is -10vh, so add a bit more to ensure it falls past the bottom
-  const fallDistance = docHeight + window.innerHeight * 0.1;
-  el.style.setProperty('--fall-distance', `${fallDistance}px`);
-
-  moneyRainContainer.appendChild(el);
-  el.addEventListener('animationend', () => el.remove());
-}
-setInterval(spawnMoney, 320);
+}); // Close DOMContentLoaded function

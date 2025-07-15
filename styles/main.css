@@ -675,6 +675,7 @@ textarea {
     opacity: 1;
     display: flex;
     justify-content: center;
+    transform: translateX(-30px);
   }
   .about-image img {
     width: 100%;
@@ -687,6 +688,7 @@ textarea {
     opacity: 1;
     width: 100%;
     text-align: center;
+    transform: translateX(-30px);
   }
   .contact-columns { flex-direction: column; }
   .contact-info, .modern-form-2 { padding: 24px 12px; }

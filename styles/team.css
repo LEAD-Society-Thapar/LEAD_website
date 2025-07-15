@@ -31,30 +31,16 @@ body {
   line-height: 1.6;
   color: #e5e7eb;
   /* Dark theme gradient background */
-  background: linear-gradient(
-    135deg,
-    #0f172a 0%,
-    #1e293b 25%,
-    #334155 50%,
-    #475569 75%,
-    #64748b 100%
-  );
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
   transition: background-color 0.5s, color 0.5s;
+  background-color: black;
 }
 
 /* Light Theme Styles */
 body.light-theme {
-  background: linear-gradient(
-    135deg,
-    #fdf2f8 0%,
-    #fce7f3 25%,
-    #ded8dc 50%,
-    #ede2e8 75%,
-    #e0a0c1 100%
-  );
+  background-color: rgb(250, 223, 244);
   color: #1f2937;
 }
 
@@ -80,14 +66,8 @@ body.light-theme .departments-section {
   background: rgba(255, 255, 255, 0.2);
 }
 
-body.light-theme .cta-section {
-  background: rgba(255, 255, 255, 0.3);
-  border-top: 1px solid rgba(148, 163, 184, 0.2);
-}
-
 body.light-theme .section-title,
-body.light-theme .hero-title,
-body.light-theme .cta-title {
+body.light-theme .hero-title {
   color: #1f2937;
 }
 
@@ -96,8 +76,7 @@ body.light-theme .hero-tagline {
 }
 
 body.light-theme .hero-description,
-body.light-theme .section-description,
-body.light-theme .cta-description {
+body.light-theme .section-description {
   color: #6b7280;
 }
 
@@ -144,11 +123,6 @@ body.light-theme .member-count {
 
 body.light-theme .member-label {
   color: #6b7280;
-}
-
-body.light-theme .btn-secondary {
-  color: #374151;
-  border-color: rgba(209, 213, 219, 0.8);
 }
 
 /* Navbar Styles */
@@ -837,7 +811,7 @@ body.light-theme .section-description {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
-  justify-items: end;
+  justify-items: center;
 }
 
 /* Center the last card in the third row */
@@ -850,7 +824,7 @@ body.light-theme .section-description {
   perspective: 1000px;
   transform-style: preserve-3d;
   position: relative;
-  touch-action: none;
+  touch-action: pan-y; /* Allow vertical scrolling */
   animation: fadeInUp 0.6s ease forwards;
   opacity: 0;
   transform: translateY(30px);
@@ -1051,7 +1025,7 @@ body.light-theme .section-description {
       0
     ) !important;
   z-index: 5;
-  mix-blend-mode: luminosity;
+  /* mix-blend-mode: luminosity; */
   transition: transform 0.3s ease;
 }
 
@@ -1513,12 +1487,146 @@ body.light-theme .section-description {
 }
 
 .member-item:hover .member-content p {
-  color: #374151;
   font-weight: 600;
 }
-.member-item:hover:not(.light-theme) .member-content p {
+
+/* Department-specific member role hover effects - solid colors based on theme */
+.department-card[data-department="tech"] .member-item:hover .member-content p {
+  color: black;
+  font-weight: 600;
+}
+
+body:not(.light-theme)
+  .department-card[data-department="tech"]
+  .member-item:hover
+  .member-content
+  p {
   color: white;
   font-weight: 600;
+}
+
+.department-card[data-department="design"]
+  .member-item:hover
+  .member-content
+  p {
+  color: black;
+  font-weight: 600;
+}
+
+body:not(.light-theme)
+  .department-card[data-department="design"]
+  .member-item:hover
+  .member-content
+  p {
+  color: white;
+  font-weight: 600;
+}
+
+.department-card[data-department="marketing"]
+  .member-item:hover
+  .member-content
+  p {
+  color: black;
+  font-weight: 600;
+}
+
+body:not(.light-theme)
+  .department-card[data-department="marketing"]
+  .member-item:hover
+  .member-content
+  p {
+  color: white;
+  font-weight: 600;
+}
+
+.department-card[data-department="content"]
+  .member-item:hover
+  .member-content
+  p {
+  color: black;
+  font-weight: 600;
+}
+
+body:not(.light-theme)
+  .department-card[data-department="content"]
+  .member-item:hover
+  .member-content
+  p {
+  color: white;
+  font-weight: 600;
+}
+
+.department-card[data-department="media"] .member-item:hover .member-content p {
+  color: black;
+  font-weight: 600;
+}
+
+body:not(.light-theme)
+  .department-card[data-department="media"]
+  .member-item:hover
+  .member-content
+  p {
+  color: white;
+  font-weight: 600;
+}
+
+/* Keep the light theme override but make it less specific */
+body.light-theme .member-item:not([data-department]) .member-content p {
+  color: white;
+  font-weight: 600;
+}
+
+/* Department-specific member name hover effects */
+.department-card[data-department="tech"] .member-item:hover .member-content h4 {
+  background: linear-gradient(135deg, #dc2626, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.05);
+}
+
+.department-card[data-department="design"]
+  .member-item:hover
+  .member-content
+  h4 {
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.05);
+}
+
+.department-card[data-department="marketing"]
+  .member-item:hover
+  .member-content
+  h4 {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.05);
+}
+
+.department-card[data-department="content"]
+  .member-item:hover
+  .member-content
+  h4 {
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.05);
+}
+
+.department-card[data-department="media"]
+  .member-item:hover
+  .member-content
+  h4 {
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.05);
 }
 
 .member-linkedin {
@@ -1624,92 +1732,6 @@ body.light-theme .section-description {
   color: white;
   transform: translateY(-4px) rotate(12deg) scale(1.25);
   box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-}
-
-/* CTA Section */
-.cta-section {
-  padding: 80px 0;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(236, 72, 153, 0.1);
-  backdrop-filter: blur(5px);
-}
-
-.cta-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #f9fafb;
-  margin-bottom: 16px;
-  transition: transform 0.3s ease;
-}
-
-body.light-theme .cta-title {
-  color: #1f2937;
-}
-
-.cta-description {
-  font-size: 1.125rem;
-  color: #9ca3af;
-  max-width: 512px;
-  margin: 0 auto 32px;
-  line-height: 1.7;
-}
-
-body.light-theme .cta-description {
-  color: #6b7280;
-}
-
-.cta-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #dc2626, #ec4899, #8b5cf6);
-  color: white;
-  border: none;
-  padding: 12px 32px;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
-  transition: all 0.3s ease;
-  transform: translateY(0);
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #b91c1c, #db2777, #7c3aed);
-  box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
-  transform: translateY(-8px) scale(1.1);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: #374151;
-  border: 2px solid rgba(209, 213, 219, 0.8);
-  padding: 12px 32px;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  transform: translateY(0);
-  backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-  border-color: #8b5cf6;
-  color: #8b5cf6;
-  background: linear-gradient(
-    135deg,
-    rgba(250, 245, 255, 0.8),
-    rgba(243, 232, 255, 0.8)
-  );
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
 }
 
 /* Animations */
@@ -1960,9 +1982,6 @@ body.light-theme .cta-description {
 
   .executive-grid {
     grid-template-columns: repeat(2, 1fr);
-    justify-content: end;
-    margin-left: 40px;
-    margin-right: 20px;
   }
 
   .executive-card-centered {
@@ -2026,10 +2045,6 @@ body.light-theme .cta-description {
     width: 36px;
     height: 36px;
   }
-
-  .cta-title {
-    font-size: 2rem;
-  }
 }
 
 @media screen and (max-width: 480px) {
@@ -2062,7 +2077,6 @@ body.light-theme .cta-description {
 
   .executive-grid {
     grid-template-columns: 1fr;
-
   }
 
   .executive-card-centered {
@@ -2077,9 +2091,6 @@ body.light-theme .cta-description {
 
   .card-inner {
     height: 300px;
-    /* margin-left: 0; */
-    margin-left: 40px;
-    padding-right: 0;
   }
 
   .member-info {
@@ -2147,11 +2158,20 @@ body.light-theme .cta-description {
     width: 32px;
     height: 32px;
   }
+}
 
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    max-width: 280px;
+/* Add this new rule for better mobile touch handling */
+@media (max-width: 768px) {
+  .executive-card {
+    touch-action: pan-y; /* Ensure vertical scrolling works on mobile */
+  }
+
+  .card-inner {
+    touch-action: pan-y; /* Allow scrolling through card content */
+  }
+
+  .page-container {
+    touch-action: pan-y; /* Ensure main container allows scrolling */
   }
 }
 
@@ -2159,111 +2179,5 @@ body.light-theme .cta-description {
 @media (min-width: 640px) {
   .hero-title {
     font-size: 5rem;
-  }
-
-  .cta-buttons {
-    flex-direction: row;
-    justify-content: center;
-  }
-}
-
-
-
-
-/* Your existing CSS remains untouched */
-/* ... keep everything you already have ... */
-
-/* Add these new rules at the end of your team.css file */
-
-/* Fix member-info overflow in executive cards */
-.member-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 12px 14px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.member-details,
-.contact-links {
-  flex: 1 1 100%;
-  min-width: 0;
-}
-
-.contact-links {
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-/* Responsive Executive Grid */
-@media (max-width: 1200px) {
-  .executive-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .executive-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Responsive Departments Grid */
-@media (max-width: 500px) {
-  .departments-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Responsive Navbar and Header tweaks */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .mobile-controls .theme-toggle {
-    display: inline-flex;
-  }
-}
-
-/* Ensure images in cards scale down nicely */
-.image-container img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-/* Prevent avatar overflow */
-.member-avatar img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-/* Adjust typography on small screens */
-@media (max-width: 600px) {
-  .hero-title {
-    font-size: 2.5rem;
-  }
-
-  .hero-description,
-  .section-description {
-    font-size: 1rem;
-  }
-
-  .hero-tagline {
-    font-size: 1.25rem;
   }
 }

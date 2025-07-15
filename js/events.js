@@ -249,10 +249,16 @@ function renderSlides() {
 
   // === Auto-scroll every 2 sec ===
   const startAutoScroll = () => {
+
     autoScroll = setInterval(() => {
-      currentIndex = (currentIndex + 1) % totalImages;
-      scrollToImage(currentIndex);
-    }, 2000);
+      if(currentIndex==4){ 
+        currentIndex = -1; // Reset to first image after last
+        scrollToImage(currentIndex);
+      }else{
+      currentIndex = (currentIndex + 1) % 4;
+      scrollToImage(currentIndex);}
+    }, 1000);
+
   };
 
   const stopAutoScroll = () => clearInterval(autoScroll);
@@ -381,19 +387,23 @@ function unflipAllCards() {
 prevBtn.addEventListener('click', () => {
   if (current > -1) {
     current -= 1;
-    updateCarousel();
-    updateHighlight();
-    unflipAllCards();
+  } else {
+    current = maxIndex() - 1; // Go to last card if at first
   }
+  updateCarousel();
+  updateHighlight();
+  unflipAllCards();
 });
 
 nextBtn.addEventListener('click', () => {
   if (current < maxIndex() - 1) {
     current += 1;
-    updateCarousel();
-    updateHighlight();
-    unflipAllCards();
+  } else {
+    current = -1; // Go to first card if at last
   }
+  updateCarousel();
+  updateHighlight();
+  unflipAllCards();
 });
 
 let autoSlide = setInterval(autoAdvance, 5000);
