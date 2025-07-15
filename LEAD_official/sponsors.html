@@ -13,8 +13,9 @@
     <!-- Navbar -->
 <header class="navbar">
     <a href="sponsors.html">
-      <img id="logo" src="images/LEAD_white.png" alt="logo" />
+      <img id="logo" src="images/Leadlogo.png" alt="logo" />
     </a>
+
     
     <div class="mobile-controls">
       <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle Theme">
@@ -123,149 +124,6 @@
     </div>
 
     <script src="js/sponsors.js"></script>
-    <script>
-        // Direct theme toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Direct theme toggle script loaded');
-            
-            const toggleButton = document.getElementById('themeToggle');
-            const toggleButtonMobile = document.getElementById('themeToggleMobile');
-            const logoImg = document.getElementById('logo');
-            
-            const sunIcon = `
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24"
-                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21
-                               m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12
-                               a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
-                </svg>`;
-            
-            const moonIcon = `
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24"
-                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M21 12.79A9 9 0 0 1 11.21 3a7.5 7.5 0 1 0 9.79 9.79Z" />
-                </svg>`;
-            
-            function setThemeIcons(isLight) {
-                const iconSpan = document.getElementById('themeIcon');
-                const iconSpanMobile = document.getElementById('themeIconMobile');
-                if (iconSpan) iconSpan.innerHTML = isLight ? moonIcon : sunIcon;
-                if (iconSpanMobile) iconSpanMobile.innerHTML = isLight ? moonIcon : sunIcon;
-            }
-            
-            function applyTheme(isLight) {
-                if (isLight) {
-                    document.body.classList.add('light-theme');
-                    if (logoImg) logoImg.src = 'LEAD_black.png';
-                } else {
-                    document.body.classList.remove('light-theme');
-                    if (logoImg) logoImg.src = 'LEAD_white.png';
-                }
-                setThemeIcons(isLight);
-            }
-            
-            function toggleTheme() {
-                console.log('Toggle theme clicked!');
-                const isLight = !document.body.classList.contains('light-theme');
-                console.log('Switching to light theme:', isLight);
-                applyTheme(isLight);
-                localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            }
-            
-            // Add click event listeners
-            if (toggleButton) {
-                console.log('Adding click listener to toggle button');
-                toggleButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleTheme();
-                });
-            } else {
-                console.log('Toggle button not found!');
-            }
-            
-            if (toggleButtonMobile) {
-                console.log('Adding click listener to mobile toggle button');
-                toggleButtonMobile.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleTheme();
-                });
-            } else {
-                console.log('Mobile toggle button not found!');
-            }
-            
-            // Load saved theme
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                applyTheme(true);
-            } else {
-                applyTheme(false);
-            }
-            
-            // Set initial icons
-            setThemeIcons(document.body.classList.contains('light-theme'));
-            
-            // === Money Rain Effect ===
-            const moneyRainContainer = document.getElementById('money-rain');
-            const moneySymbols = ['💵', '💸', '🪙'];
-            
-            function spawnMoney() {
-                const el = document.createElement('span');
-                el.className = 'money';
-                el.textContent = moneySymbols[Math.floor(Math.random() * moneySymbols.length)];
-                el.style.left = Math.random() * 98 + 'vw';
-                el.style.fontSize = (1.8 + Math.random() * 1.8) + 'rem';
-                el.style.animationDuration = (2.8 + Math.random() * 2.5) + 's';
-                el.style.transform = `rotateZ(${Math.random() * 360}deg)`;
-
-                // Calculate the fall distance: total scrollable height + some buffer
-                const docHeight = Math.max(
-                    document.body.scrollHeight, document.documentElement.scrollHeight,
-                    document.body.offsetHeight, document.documentElement.offsetHeight,
-                    document.body.clientHeight, document.documentElement.clientHeight
-                );
-                // Start position is -10vh, so add a bit more to ensure it falls past the bottom
-                const fallDistance = docHeight + window.innerHeight * 0.1;
-                el.style.setProperty('--fall-distance', `${fallDistance}px`);
-
-                moneyRainContainer.appendChild(el);
-                el.addEventListener('animationend', () => el.remove());
-            }
-            
-            // Start the money rain effect
-            console.log('Starting money rain effect...');
-            setInterval(spawnMoney, 320);
-
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.getElementById('navLinks');
-
-            if (hamburger && navLinks) {
-              hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('nav-active');
-                hamburger.classList.toggle('hamburger-active');
-              });
-
-              // Close menu when clicking on links (for mobile)
-              document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                  navLinks.classList.remove('nav-active');
-                  hamburger.classList.remove('hamburger-active');
-                });
-              });
-
-              // Close menu when clicking outside
-              document.addEventListener('click', (e) => {
-                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-                  navLinks.classList.remove('nav-active');
-                  hamburger.classList.remove('hamburger-active');
-                }
-              });
-            }
-        });
-    </script>
 </body>
 
 </html>

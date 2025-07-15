@@ -30,16 +30,38 @@ document.addEventListener("DOMContentLoaded", () => {
     if (iconSpanMobile) iconSpanMobile.innerHTML = isLight ? moonIcon : sunIcon
   }
 
-  function toggleTheme() {
-    document.body.classList.toggle("light-theme")
-    const isLight = document.body.classList.contains("light-theme")
-    setThemeIcons(isLight)
-    // Update logo source when you have actual logo files
-    // logoImg.src = isLight ? '/placeholder.svg?height=25&width=100&text=LEAD-Dark' : '/placeholder.svg?height=25&width=100&text=LEAD-Light';
+ function applyTheme(isLight) {
+  if (isLight) {
+    document.body.classList.add('light-theme');
+    logoImg.src = 'Images/LEAD_black.png';
+    const heroLogo = document.getElementById('heroLogo');
+    if (heroLogo) heroLogo.src = 'Images/LEAD_black.png';
+  } else {
+    document.body.classList.remove('light-theme');
+    logoImg.src = 'Images/Leadlogo.png';
+    const heroLogo = document.getElementById('heroLogo');
+    if (heroLogo) heroLogo.src = 'Images/Leadlogo.png';
   }
+  setThemeIcons(isLight);
+}
 
-  if (toggleButton) toggleButton.addEventListener("click", toggleTheme)
-  if (toggleButtonMobile) toggleButtonMobile.addEventListener("click", toggleTheme)
+function toggleTheme() {
+  const isLight = !document.body.classList.contains('light-theme');
+  applyTheme(isLight);
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+
+if (toggleButton) toggleButton.addEventListener('click', toggleTheme);
+if (toggleButtonMobile) toggleButtonMobile.addEventListener('click', toggleTheme);
+
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  applyTheme(true);
+} else {
+  applyTheme(false);
+}
+
 
   // Set initial theme icons
   setThemeIcons(document.body.classList.contains("light-theme"))

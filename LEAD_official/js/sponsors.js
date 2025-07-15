@@ -55,37 +55,28 @@ function setThemeIcons(isLight) {
 function applyTheme(isLight) {
   if (isLight) {
     document.body.classList.add('light-theme');
-    if (logoImg) logoImg.src = 'LEAD_black.png';
+    logoImg.src = 'Images/LEAD_black.png';
+    const heroLogo = document.getElementById('heroLogo');
+    if (heroLogo) heroLogo.src = 'Images/LEAD_black.png';
   } else {
     document.body.classList.remove('light-theme');
-    if (logoImg) logoImg.src = 'LEAD_white.png';
+    logoImg.src = 'Images/Leadlogo.png';
+    const heroLogo = document.getElementById('heroLogo');
+    if (heroLogo) heroLogo.src = 'Images/Leadlogo.png';
   }
   setThemeIcons(isLight);
 }
 
 function toggleTheme() {
-  console.log('Toggle theme clicked!'); // Debug log
   const isLight = !document.body.classList.contains('light-theme');
-  console.log('Current theme is light:', isLight); // Debug log
   applyTheme(isLight);
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
 }
 
-if (toggleButton) {
-  console.log('Toggle button found:', toggleButton); // Debug log
-  toggleButton.addEventListener('click', toggleTheme);
-} else {
-  console.log('Toggle button not found!'); // Debug log
-}
+if (toggleButton) toggleButton.addEventListener('click', toggleTheme);
+if (toggleButtonMobile) toggleButtonMobile.addEventListener('click', toggleTheme);
 
-if (toggleButtonMobile) {
-  console.log('Mobile toggle button found:', toggleButtonMobile); // Debug log
-  toggleButtonMobile.addEventListener('click', toggleTheme);
-} else {
-  console.log('Mobile toggle button not found!'); // Debug log
-}
 
-// Load saved theme from localStorage
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'light') {
   applyTheme(true);
