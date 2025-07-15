@@ -1025,7 +1025,7 @@ body.light-theme .section-description {
       0
     ) !important;
   z-index: 5;
-  mix-blend-mode: luminosity;
+  /* mix-blend-mode: luminosity; */
   transition: transform 0.3s ease;
 }
 
