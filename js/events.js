@@ -77,7 +77,10 @@ if (hamburgerBtn && navLinksMenu) {
 }
 // === HOMEPAGE NAVBAR LOGIC END ===
 
-const slideData = [
+// Infinite loop carousel setup
+// 1. Add a duplicate of the last real card at the start
+// 2. Add a duplicate of the first real card at the end
+const realCards = [
   {
     title: "Makkah Gathering",
     src: "https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=3534&auto=format&fit=crop",
@@ -135,6 +138,12 @@ const slideData = [
   }
 ];
 
+const slideData = [
+  realCards[realCards.length - 1], // duplicate last real card at start
+  ...realCards,
+  realCards[0] // duplicate first real card at end
+];
+
 
 
 
@@ -142,7 +151,7 @@ const slidesContainer = document.getElementById('slidesContainer'),
       prevBtn = document.getElementById('prevBtn'),
       nextBtn = document.getElementById('nextBtn');
 
-let current = 0;
+let current = 1; // Start at the first real card
 
 function visibleCount() {
   return window.innerWidth <= 768 ? 1 : 3;
@@ -306,8 +315,9 @@ function renderSlides() {
 gsap.registerPlugin(ScrollTrigger);
 
 // Initial scale setup
-gsap.set(".card", { scale: 0.85 });
-gsap.set(".card.one", { scale: 1 });
+// gsap.set(".card", { scale: 0.85 });
+// gsap.set(".card.one", { scale: 1 });
+// Only .card.highlighted should be bulged
 
 const tl = gsap.timeline({ defaults: { duration: 1, ease: "none" } }).pause();
 
@@ -393,39 +403,53 @@ function unflipAllCards() {
 
 // Update prev/next button handlers to use unflipAllCards
 prevBtn.addEventListener('click', () => {
-  if (current > -1) {
-    current -= 1;
+  if (current <= 0) {
+    current = slideData.length - 2;
+    updateCarousel(); // use smooth transition
   } else {
-    current = maxIndex() - 1; // Go to last card if at first
+    current -= 1;
+    // If we land on the first duplicate, jump to the real last card
+    if (current === 0) {
+      current = slideData.length - 2;
+      updateCarousel(); // use smooth transition
+    } else {
+      updateCarousel();
+    }
   }
-  updateCarousel();
   updateHighlight();
   unflipAllCards();
 });
 
 nextBtn.addEventListener('click', () => {
-  if (current < maxIndex() - 1) {
-    current += 1;
+  if (current >= slideData.length - 1) {
+    current = 1;
+    updateCarousel(); // use smooth transition
   } else {
-    current = -1; // Go to first card if at last
+    current += 1;
+    // If we land on the last duplicate, jump to the real first card
+    if (current === slideData.length - 1) {
+      current = 1;
+      updateCarousel(); // use smooth transition
+    } else {
+      updateCarousel();
+    }
   }
-  updateCarousel();
   updateHighlight();
   unflipAllCards();
 });
 
-let autoSlide = setInterval(autoAdvance, 5000);
-
+// Also update autoAdvance to never land on the first or last card
+autoSlide = setInterval(autoAdvance, 5000);
 function autoAdvance() {
   if (anyCardFlipped()) {
     clearInterval(autoSlide);
     autoSlide = null;
     return;
   }
-  if (current < maxIndex() - 1) {
+  if (current < slideData.length - 2) {
     current += 1;
   } else {
-    current = 0;
+    current = 1;
   }
   updateCarousel();
   updateHighlight();
@@ -440,37 +464,51 @@ slidesContainer.addEventListener('mouseleave', () => {
 
 
 function updateHighlight() {
-  slidesContainer.querySelectorAll('.card').forEach(c => c.classList.remove('highlighted'));
-
-  const cards = Array.from(slidesContainer.querySelectorAll('.card'));
-  const centerIndex = current + 1; // second card in 3-view layout
-  if (cards[centerIndex]) {
-    cards[centerIndex].classList.add('highlighted');
-  }
+  const allCards = slidesContainer.querySelectorAll('.card');
+  allCards.forEach((card, i) => {
+    // Only highlight if not the first or last card (helper duplicates)
+    if (i === current && i !== 0 && i !== slideData.length - 1) {
+      card.classList.add('highlighted');
+      card.style.transform = 'scale(1)';
+    } else {
+      card.classList.remove('highlighted');
+      card.style.transform = 'scale(0.85)';
+    }
+  });
 }
 
-
-
-
-function updateCarousel() {
-  const shift = -(100 / visibleCount()) * current;
+function updateCarousel(jumpInstant) {
+  const count = visibleCount();
+  let shift;
+  if (count === 1) {
+    shift = -current * 100;
+  } else {
+    shift = -(100 / count) * (current - 1);
+  }
+  slidesContainer.style.transition = jumpInstant ? 'none' : 'transform 0.6s ease';
   slidesContainer.style.transform = `translateX(${shift}%)`;
+  if (jumpInstant) {
+    // Force reflow to apply the transition removal
+    void slidesContainer.offsetWidth;
+    slidesContainer.style.transition = '';
+  }
 
   // Reset all card scales and remove highlight
   const allCards = slidesContainer.querySelectorAll('.card');
   allCards.forEach(card => {
     card.classList.remove('highlighted');
-    // Instantly set scale without animation
     card.style.transform = 'scale(0.85)';
   });
 
-  // Highlight and scale the center card
-  const centerIndex = current + 1; // the 2nd visible card in a 3-card view
-  const centerCard = allCards[centerIndex];
-  if (centerCard) {
-    centerCard.classList.add('highlighted');
-    // Instantly set scale without animation
-    centerCard.style.transform = 'scale(1)';
+  // Highlight and scale the center card, but only if not first or last
+  let centerIndex = current;
+  if (count === 3) centerIndex = current + 1;
+  if (centerIndex !== 0 && centerIndex !== slideData.length - 1) {
+    const centerCard = allCards[centerIndex];
+    if (centerCard) {
+      centerCard.classList.add('highlighted');
+      centerCard.style.transform = 'scale(1)';
+    }
   }
 }
 
