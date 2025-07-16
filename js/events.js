@@ -237,13 +237,21 @@ function renderSlides() {
   // === Scroll Arrows ===
   leftBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    currentIndex = Math.max(currentIndex - 1, 0);
+    if (currentIndex === 0) {
+      currentIndex = totalImages - 1;
+    } else {
+      currentIndex -= 1;
+    }
     scrollToImage(currentIndex);
   });
 
   rightBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    currentIndex = Math.min(currentIndex + 1, totalImages - 1);
+    if (currentIndex === totalImages - 1) {
+      currentIndex = 0;
+    } else {
+      currentIndex += 1;
+    }
     scrollToImage(currentIndex);
   });
 
