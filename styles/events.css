@@ -94,6 +94,31 @@ body.light-theme .section-title {
   transition: transform 0.4s, box-shadow 0.4s;
 }
 
+/* Remove any .card.one or .card.one:hover bulge/scale styles and ensure only .card.highlighted controls the bulge. */
+.card.highlighted {
+  transform: scale(1) !important;
+  z-index: 2;
+  box-shadow: 0 28px 80px rgba(31,38,135,0.60);
+  background: rgba(255,255,255,0.32);
+  animation: borderGlowCard 2s ease-in-out infinite;
+}
+
+@media (max-width: 600px) {
+  .slides {
+    gap: 0;
+  }
+  .slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .card.highlighted {
+    width: 100% !important;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+}
+
 .slide-inner {
   position: relative;
   transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
