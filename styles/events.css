@@ -232,8 +232,8 @@ body.light-theme .section-title {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #ffffff;
-  color: #000;
+  background: #362736;
+  color: #ffffff;
   border-radius: 12px;
   overflow: hidden;
   padding: 12px;

@@ -82,57 +82,57 @@ if (hamburgerBtn && navLinksMenu) {
 // 2. Add a duplicate of the first real card at the end
 const realCards = [
   {
-    title: "Makkah Gathering",
-    src: "https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=3534&auto=format&fit=crop",
-    description: "A spiritual and peaceful gathering in Makkah city, filled with blessings and serenity.",
+    title: "ESC NEXUS",
+    src: "IMG-20250718-WA0010.jpg",
+    description: "",
     gallery: [
-      "https://images.unsplash.com/photo-1581320545532-9976a2ab1d66?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1587502537745-8a2dfc1d4f4c?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1602526207925-9aa1573fa36e?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1603574670812-03859dca3e42?auto=format&fit=crop&w=400&q=80"
+      "IMG-20250718-WA0011.jpg",
+      "IMG-20250718-WA0014.jpg",
+      "IMG-20250718-WA0013.jpg",
+      "Screenshot 2025-07-18 235021.png",
     ]
   },
   {
-    title: "Jeddah Corniche",
-    src: "https://images.unsplash.com/photo-1518710843675-2540dd79065c?q=80&w=3387&auto=format&fit=crop",
-    description: "A vibrant evening along the Red Sea with scenic views and modern architecture.",
+    title: "CASH OR CLASH",
+    src: "Screenshot 2025-07-18 234144.png",
+    description: "",
     gallery: [
-      "https://images.unsplash.com/photo-1616531770196-1a642c404cc3?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1534237710431-e2fc698436b9?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1558981403-c5f9891deff6?auto=format&fit=crop&w=400&q=80"
+      "IMG-20250718-WA0006.jpg",
+      "IMG-20250718-WA0007.jpg",
+      "IMG-20250718-WA0009.jpg",
+      "IMG-20250718-WA0008.jpg",
     ]
   },
   {
-    title: "Riyadh Cityscape",
-    src: "https://images.unsplash.com/photo-1590041794748-2d8eb73a571c?q=80&w=3456&auto=format&fit=crop",
-    description: "The heart of Saudi Arabia with tall skyscrapers and an exciting urban atmosphere.",
+    title: "ERROR 404",
+    src: "  Screenshot 2025-07-18 235656.png",
+    description: "",
     gallery: [
-      "https://images.unsplash.com/photo-1520681185598-fc299e6c1df4?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1558002038-daf7aaae4d8b?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1559648485-6fd0bca89843?auto=format&fit=crop&w=400&q=80"
+      "_storage_emulated_0_DCIM_Camera_IMG_20250202_192345.jpg",
+      "20250202_185200.jpg",
+      "Photo from Kavya (1).jpg",
+      "Photo from Kavya.jpg"
     ]
   },
   {
-    title: "Desert Bloom",
-    src: "https://images.unsplash.com/photo-1679420437432-80cfbf88986c",
-    description: "A magical desert transformed by rare rains into a field of colorful wildflowers.",
+    title: "VORTEX",
+    src: " IMG-20250718-WA0015.jpg",
+    description: "",
     gallery: [
-      "https://images.unsplash.com/photo-1580740561925-e7128f34c696?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1605379399642-01c0edbe28dc?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1605540704902-2672cc5c9f53?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1633279862046-d6046deec891?auto=format&fit=crop&w=400&q=80"
+      "IMG-20250718-WA0017.jpg",
+      "IMG-20250718-WA0018.jpg",
+      "IMG-20250718-WA0000.jpg",
+      "IMG-20250718-WA0016.jpg"
     ]
   },
   {
-    title: "Ocean Festival",
-    src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-    description: "An energetic celebration by the sea with music, food, and ocean-themed decorations.",
+    title: "WEBINAR",
+    src: "1752342777955.jpg",
+    description: "",
     gallery: [
-      "https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1504609813445-cb293fcd7745?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=400&q=80",
+      "1752342777682.jpg",
+      "1752342778924.jpg",
+      "1752342777682.jpg",
       "https://images.unsplash.com/photo-1582213782179-3749e6cb6ac7?auto=format&fit=crop&w=400&q=80"
     ]
   }

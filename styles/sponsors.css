@@ -130,12 +130,11 @@ body.light-theme .card:hover::after {
   }
 }
 .card:hover {
-  transform: translateY(-28px) translateX(18px) rotateX(12deg) rotateY(12deg);
-  animation: tiltMove 2s ease-in-out infinite;
-  box-shadow: 0 28px 80px rgba(31,38,135,0.60); /* Even more intense shadow */
-  background: rgba(255,255,255,0.32);
   animation: borderGlowCard 2s ease-in-out infinite;
+  box-shadow: 0 28px 80px rgba(31, 38, 135, 0.60);
+  background: rgba(255, 255, 255, 0.32);
 }
+
 .card:hover::before {
   opacity: 1;
 }
@@ -143,21 +142,8 @@ body.light-theme .card:hover::after {
   opacity: 1;
   filter: blur(5px);
 }
-@keyframes tiltMove {
-  0%, 100% {
-      transform: translateY(-10px) translateX(5px) rotateX(5deg) rotateY(5deg);
-  }
-  25% {
-      transform: translateY(-10px) translateX(-5px) rotateX(5deg) rotateY(-5deg);
-  }
-  50% {
-      transform: translateY(-10px) translateX(5px) rotateX(5deg) rotateY(5deg);
-  }
-  75% {
-      transform: translateY(-10px) translateX(-5px) rotateX(5deg) rotateY(-5deg);
-  }
-}
-@keyframes borderGlowCard {
+
+/* @keyframes borderGlowCard {
   0%, 100% {
       border-image: linear-gradient(45deg, #1e3a8a, #059669, #ff69b4, #dc143c, #7c3aed) 1;
       box-shadow: 
@@ -210,7 +196,7 @@ body.light-theme .card:hover::after {
           0 0 60px rgba(255, 255, 255, 0.1),
           0 20px 40px rgba(0,0,0,0.3);
   }
-}
+} */
 .card img {
   transition: transform 0.5s cubic-bezier(0.4, 1.5, 0.5, 1), box-shadow 0.3s;
   z-index: 2;
