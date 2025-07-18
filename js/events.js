@@ -83,56 +83,56 @@ if (hamburgerBtn && navLinksMenu) {
 const realCards = [
   {
     title: "ESC NEXUS",
-    src: "IMG-20250718-WA0010.jpg",
+    src: "images/IMG-20250718-WA0010.jpg",
     description: "",
     gallery: [
-      "IMG-20250718-WA0011.jpg",
-      "IMG-20250718-WA0014.jpg",
-      "IMG-20250718-WA0013.jpg",
-      "Screenshot 2025-07-18 235021.png",
+      "images/IMG-20250718-WA0011.jpg",
+      "images/IMG-20250718-WA0014.jpg",
+      "images/IMG-20250718-WA0013.jpg",
+      "images/Screenshot 2025-07-18 235021.png",
     ]
   },
   {
     title: "CASH OR CLASH",
-    src: "Screenshot 2025-07-18 234144.png",
+    src: "images/Screenshot 2025-07-18 234144.png",
     description: "",
     gallery: [
-      "IMG-20250718-WA0006.jpg",
-      "IMG-20250718-WA0007.jpg",
-      "IMG-20250718-WA0009.jpg",
-      "IMG-20250718-WA0008.jpg",
+      "images/IMG-20250718-WA0006.jpg",
+      "images/IMG-20250718-WA0007.jpg",
+      "images/IMG-20250718-WA0009.jpg",
+      "images/IMG-20250718-WA0008.jpg",
     ]
   },
   {
     title: "ERROR 404",
-    src: "  Screenshot 2025-07-18 235656.png",
+    src: "  images/Screenshot 2025-07-18 235656.png",
     description: "",
     gallery: [
-      "_storage_emulated_0_DCIM_Camera_IMG_20250202_192345.jpg",
-      "20250202_185200.jpg",
-      "Photo from Kavya (1).jpg",
-      "Photo from Kavya.jpg"
+      "images/_storage_emulated_0_DCIM_Camera_IMG_20250202_192345.jpg",
+      "images/20250202_185200.jpg",
+      "images/Photo from Kavya (1).jpg",
+      "images/Photo from Kavya.jpg"
     ]
   },
   {
     title: "VORTEX",
-    src: " IMG-20250718-WA0015.jpg",
+    src: " images/IMG-20250718-WA0015.jpg",
     description: "",
     gallery: [
-      "IMG-20250718-WA0017.jpg",
-      "IMG-20250718-WA0018.jpg",
-      "IMG-20250718-WA0000.jpg",
-      "IMG-20250718-WA0016.jpg"
+      "images/IMG-20250718-WA0017.jpg",
+      "images/IMG-20250718-WA0018.jpg",
+      "images/IMG-20250718-WA0000.jpg",
+      "images/IMG-20250718-WA0016.jpg"
     ]
   },
   {
     title: "WEBINAR",
-    src: "1752342777955.jpg",
+    src: "images/1752342777955.jpg",
     description: "",
     gallery: [
-      "1752342777682.jpg",
-      "1752342778924.jpg",
-      "1752342777682.jpg",
+      "images/1752342777682.jpg",
+      "images/1752342778924.jpg",
+      "images/1752342777682.jpg",
       "https://images.unsplash.com/photo-1582213782179-3749e6cb6ac7?auto=format&fit=crop&w=400&q=80"
     ]
   }
