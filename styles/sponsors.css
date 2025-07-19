@@ -400,9 +400,7 @@ animation: money-fall linear forwards;
 
 /* 2️⃣ For mobile phones: make cards stack nicely */
 @media (max-width: 600px) {
-  body {
-    padding: 20px;
-  }
+ 
   .container {
     flex-direction: column;
     gap: 54px; /* even smaller gap */
