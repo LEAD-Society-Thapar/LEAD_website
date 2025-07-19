@@ -162,7 +162,7 @@ body.light-theme .section-title {
   height: 360px;
   object-fit: cover;
   transition: height 0.5s ease;
-  border-radius: 12px 12px 0 0;
+  
 }
 
 .slide-inner.folded .card-top img {
@@ -234,7 +234,7 @@ body.light-theme .section-title {
   justify-content: space-between;
   background: #362736;
   color: #ffffff;
-  border-radius: 12px;
+  
   overflow: hidden;
   padding: 12px;
 }
