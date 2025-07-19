@@ -133,7 +133,7 @@ const realCards = [
       "images/1752342777682.jpg",
       "images/1752342778924.jpg",
       "images/1752342777682.jpg",
-      "https://images.unsplash.com/photo-1582213782179-3749e6cb6ac7?auto=format&fit=crop&w=400&q=80"
+      
     ]
   }
 ];
@@ -151,7 +151,7 @@ const slidesContainer = document.getElementById('slidesContainer'),
       prevBtn = document.getElementById('prevBtn'),
       nextBtn = document.getElementById('nextBtn');
 
-let current = 1; // Start at the first real card
+let current = 1; // Start at the first real card (ESC NEXUS)
 
 function visibleCount() {
   return window.innerWidth <= 768 ? 1 : 3;
@@ -208,12 +208,26 @@ function renderSlides() {
   let autoScroll;
 
   // === Scroll-to-index helper ===
-  const scrollToImage = (index) => {
-    carousel.scrollTo({
-      left: carousel.clientWidth * index,
-      behavior: 'smooth',
-    });
+  const updateBlurBg = (index) => {
+    const img = galleryImgs[index];
+    if (img) {
+      carousel.style.setProperty('--gallery-blur-bg', `url('${img.src}')`);
+    }
   };
+
+  const scrollToImage = (index) => {
+    const img = carousel.querySelectorAll('img')[index];
+    if (img) {
+      carousel.scrollTo({
+        left: img.offsetLeft,
+        behavior: 'smooth',
+      });
+      updateBlurBg(index);
+    }
+  };
+
+  // Set initial blurred background
+  updateBlurBg(currentIndex);
 
   // === Dots ===
   const dotsWrapper = document.createElement('div');
@@ -237,6 +251,7 @@ function renderSlides() {
     const scrollLeft = carousel.scrollLeft;
     const index = Math.round(scrollLeft / width);
     currentIndex = index;
+    updateBlurBg(currentIndex);
 
     dotsWrapper.querySelectorAll('.dot').forEach((d, i) => {
       d.classList.toggle('active', i === currentIndex);
@@ -266,16 +281,10 @@ function renderSlides() {
 
   // === Auto-scroll every 2 sec ===
   const startAutoScroll = () => {
-
     autoScroll = setInterval(() => {
-      if(currentIndex==4){ 
-        currentIndex = -1; // Reset to first image after last
-        scrollToImage(currentIndex);
-      }else{
-      currentIndex = (currentIndex + 1) % 4;
-      scrollToImage(currentIndex);}
+      currentIndex = (currentIndex + 1) % totalImages;
+      scrollToImage(currentIndex);
     }, 1000);
-
   };
 
   const stopAutoScroll = () => clearInterval(autoScroll);
@@ -309,8 +318,20 @@ function renderSlides() {
   startAutoScroll();
 }, 0);
   })
+  // After rendering, highlight the correct card
+  setTimeout(() => {
+    updateHighlight();
+  }, 0);
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.card-face.front').forEach(card => {
+    const img = card.querySelector('.card-top img');
+    if (img) {
+      card.style.setProperty('--event-bg-image', `url(${img.src})`);
+    }
+  });
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -654,3 +675,29 @@ document.querySelectorAll('.leMagnify span').forEach((span, i) => {
     });
   });
 })();
+
+function slowScrollTo(element, target, duration = 800) { // duration in ms (e.g., 800ms for slow)
+  const start = element.scrollLeft;
+  const change = target - start;
+  const startTime = performance.now();
+
+  function animateScroll(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease-in-out for smoothness
+    const ease = 0.5 - 0.5 * Math.cos(Math.PI * progress);
+    element.scrollLeft = start + change * ease;
+    if (progress < 1) {
+      requestAnimationFrame(animateScroll);
+    }
+  }
+  requestAnimationFrame(animateScroll);
+}
+
+const carousel = document.querySelector('.image-carousel');
+document.querySelector('.scroll-arrow.right').onclick = () => {
+  slowScrollTo(carousel, carousel.scrollLeft + carousel.offsetWidth, 800); // 800ms = slow
+};
+document.querySelector('.scroll-arrow.left').onclick = () => {
+  slowScrollTo(carousel, carousel.scrollLeft - carousel.offsetWidth, 800);
+};
