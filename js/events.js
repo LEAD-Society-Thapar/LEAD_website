@@ -84,7 +84,7 @@ const realCards = [
   {
     title: "ESC NEXUS",
     src: "images/IMG-20250718-WA0010.jpg",
-    description: "",
+    description: "MATRIX 3.0 began with ESC_NEXUS — a fast-paced coding showdown of DSA challenges, testing logic, speed, and teamwork.",
     gallery: [
       "images/IMG-20250718-WA0011.jpg",
       "images/IMG-20250718-WA0014.jpg",
@@ -95,7 +95,7 @@ const realCards = [
   {
     title: "CASH OR CLASH",
     src: "images/Screenshot 2025-07-18 234144.png",
-    description: "",
+    description: "CASH OR CLASH was LEAD’s intense mind-game marathon of strategy, twists, and survival of the sharpest.",
     gallery: [
       "images/IMG-20250718-WA0006.jpg",
       "images/IMG-20250718-WA0007.jpg",
@@ -106,7 +106,7 @@ const realCards = [
   {
     title: "ERROR 404",
     src: "  images/Screenshot 2025-07-18 235656.png",
-    description: "",
+    description: "ERROR_404 was LEAD’s MATRIX finale—an intense CTF clash of ciphers, speed, and fearless teamwork.",
     gallery: [
       "images/_storage_emulated_0_DCIM_Camera_IMG_20250202_192345.jpg",
       "images/20250202_185200.jpg",
@@ -117,7 +117,7 @@ const realCards = [
   {
     title: "VORTEX",
     src: " images/IMG-20250718-WA0015.jpg",
-    description: "",
+    description: "VORTEX was LEAD’s Stranger Things-themed event with clue hunts, web design, puzzles, and creative challenges.",
     gallery: [
       "images/IMG-20250718-WA0017.jpg",
       "images/IMG-20250718-WA0018.jpg",
@@ -128,20 +128,32 @@ const realCards = [
   {
     title: "WEBINAR",
     src: "images/1752342777955.jpg",
-    description: "",
+    description: "LEAD hosted a hands-on IoT session with alumnus Angad Singh, offering practical insights and Arduino-based learning for real-world applications."
+,
     gallery: [
       "images/1752342777682.jpg",
       "images/1752342778924.jpg",
       "images/1752342777682.jpg",
       
     ]
+  },
+  {
+    title: "Charcha-ae-Celebal",
+    src: "images/cw1.jpg",
+    description: "Charcha-ae-Celebal was an engaging session led by Moksh Sharma, offering students real-world tech insights, interactive learning, and career guidance.",
+    gallery: [
+      "images/w1.jpg",
+      "images/w2.jpg",
+      "images/w3.jpg",
+      "images/w4.jpg",
+    ]
   }
 ];
 
 const slideData = [
-  realCards[realCards.length - 1], // duplicate last real card at start
+  realCards[realCards.length - 1], 
   ...realCards,
-  realCards[0] // duplicate first real card at end
+  realCards[0] 
 ];
 
 
@@ -152,6 +164,12 @@ const slidesContainer = document.getElementById('slidesContainer'),
       nextBtn = document.getElementById('nextBtn');
 
 let current = 1; // Start at the first real card (ESC NEXUS)
+let autoSlide = null; // Declare at top-level for main carousel
+
+function startAutoSlide() {
+  if (autoSlide) clearInterval(autoSlide);
+  autoSlide = setInterval(autoAdvance, 5000);
+}
 
 function visibleCount() {
   return window.innerWidth <= 768 ? 1 : 3;
@@ -284,7 +302,7 @@ function renderSlides() {
     autoScroll = setInterval(() => {
       currentIndex = (currentIndex + 1) % totalImages;
       scrollToImage(currentIndex);
-    }, 1000);
+    }, 1700);
   };
 
   const stopAutoScroll = () => clearInterval(autoScroll);
@@ -382,6 +400,7 @@ ScrollTrigger.addEventListener("refresh", () => {
 
 
 renderSlides();
+startAutoSlide(); // Always start auto-scroll on page load
 
 // Helper to check if any card is flipped
 function anyCardFlipped() {
@@ -409,17 +428,15 @@ slidesContainer.addEventListener('click', e => {
   if (anyCardFlipped()) {
     clearInterval(autoSlide);
     autoSlide = null;
-  } else if (!autoSlide) {
-    autoSlide = setInterval(autoAdvance, 5000);
+  } else {
+    startAutoSlide();
   }
 });
 
 // Also, when unflipping all cards (e.g. on next/prev), resume autoSlide if needed
 function unflipAllCards() {
   slidesContainer.querySelectorAll('.slide-inner').forEach(i => i.classList.remove('flipped'));
-  if (!autoSlide) {
-    autoSlide = setInterval(autoAdvance, 5000);
-  }
+  startAutoSlide();
 }
 
 // Update prev/next button handlers to use unflipAllCards
@@ -439,6 +456,7 @@ prevBtn.addEventListener('click', () => {
   }
   updateHighlight();
   unflipAllCards();
+  startAutoSlide();
 });
 
 nextBtn.addEventListener('click', () => {
@@ -457,10 +475,11 @@ nextBtn.addEventListener('click', () => {
   }
   updateHighlight();
   unflipAllCards();
+  startAutoSlide();
 });
 
 // Also update autoAdvance to never land on the first or last card
-autoSlide = setInterval(autoAdvance, 5000);
+// autoSlide = setInterval(autoAdvance, 5000); // This line is now handled by startAutoSlide
 function autoAdvance() {
   if (anyCardFlipped()) {
     clearInterval(autoSlide);
@@ -476,10 +495,13 @@ function autoAdvance() {
   updateHighlight();
 }
 
-slidesContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
+slidesContainer.addEventListener('mouseenter', () => {
+  clearInterval(autoSlide);
+  autoSlide = null;
+});
 slidesContainer.addEventListener('mouseleave', () => {
-  if (!anyCardFlipped() && !autoSlide) {
-    autoSlide = setInterval(autoAdvance, 5000);
+  if (!anyCardFlipped()) {
+    startAutoSlide();
   }
 });
 
